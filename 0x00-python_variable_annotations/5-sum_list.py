@@ -3,8 +3,10 @@
 Defines function sum_list
 """
 
+from typing import List
 
-def sum_list(input_list: list[float]) -> float:
+
+def sum_list(input_list: List[float]) -> float:
     """
     Computes the sum of every element in the input list
     Args:

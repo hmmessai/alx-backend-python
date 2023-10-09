@@ -13,8 +13,6 @@ async def wait_n(n: int, max_delay: int) -> list[float]:
     with ascending order
     Returns: list of the outputs in ascending order
     """
-    wait_times = await asyncio.gather(
-            *(wait_random(max_delay) for i in range(n))
-    )
+    tasks = [asyncio.create_task(wait_random(max_delay)) for _ in range(n)]
 
-    return sorted(wait_times)
+    return [await task for task in asyncio.as_completed(tasks)]
